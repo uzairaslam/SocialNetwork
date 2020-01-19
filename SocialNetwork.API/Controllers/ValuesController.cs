@@ -1,11 +1,13 @@
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SocialNetwork.API.Data;
 
 namespace SocialNetwork.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[Controller]")]
     public class ValuesController : ControllerBase
@@ -24,6 +26,7 @@ namespace SocialNetwork.API.Controllers
             return Ok(values);
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)
         {
